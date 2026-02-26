@@ -16,22 +16,6 @@ pnum(5);
 // }
 // console.log(bs(5));
 
-// frog jump
-// function frogjumpMinCost(i, n, hights) {
-//   if (i === n) return 0;
-//   if (i == n - 1) {
-//     return hights[i] - hights[i + 1] + frogjumpMinCost(i + 1, n, hights);
-//   }
-//   if (i > n) return Infinity;
-//   let l =
-//     Math.abs(hights[i] - hights[i + 1]) + frogjumpMinCost(i + 1, n, hights);
-//   let r =
-//     Math.abs(hights[i] - hights[i + 2]) + frogjumpMinCost(i + 2, n, hights);
-//   return Math.min(l, r);
-// }
-
-// console.log(frogjumpMinCost(1, 6, [undefined, 30, 10, 60, 10, 60, 50]));
-
 // Frog 2
 
 // function frog2(i, n, k, heights) {
@@ -73,3 +57,17 @@ pnum(5);
 // }
 
 // console.log(steps(10));
+
+// miniCoineCharge
+
+function miniCoineCharge(coins, sum) {
+  if (sum === 0) return 0;
+  let result = Infinity;
+  for (let i = 0; i < coins.length; i++) {
+    if (sum - coins[i] < 0) continue;
+    result = Math.min(result, miniCoineCharge(coins, sum - coins[i]));
+  }
+  return 1 + result;
+}
+
+console.log(miniCoineCharge([1, 5, 7], 11));
